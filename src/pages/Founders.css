@@ -1,0 +1,39 @@
+
+.founders-page {
+  padding: 40px;
+  text-align: center;
+  color: white;
+}
+.founders-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+.founders-list {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.founder-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 12px;
+}
+.founder-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+.founder-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+
+.founder-role {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-top: 5px;
+}
