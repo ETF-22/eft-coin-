@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function Countdown() {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [timeLeft, setTimeLeft] = useState({ days: "00", hours: "00", minutes: "00", seconds: "00" });
   const [expired, setExpired] = useState(false);
 
   useEffect(() => {
@@ -15,10 +15,10 @@ export default function Countdown() {
         setExpired(true);
         clearInterval(interval);
       } else {
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
+        const days = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+        const hours = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
+        const minutes = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2, '0');
+        const seconds = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
 
         setTimeLeft({ days, hours, minutes, seconds });
       }
@@ -29,17 +29,32 @@ export default function Countdown() {
 
   if (expired) {
     return (
-      <div className="text-center text-xl mb-8">
-        <p>Presale Ended</p>
+      <div className="text-center text-2xl font-bold mb-8">
+        <p className="text-red-500">Presale Ended</p>
       </div>
     );
   }
 
   return (
-    <div className="text-center text-xl mb-8">
-      <p>
-        Next Price in: {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
-      </p>
+    <div className="text-center text-2xl font-bold mb-8 flex flex-col items-center">
+      <div className="flex gap-4">
+        <div className="bg-black/70 p-4 rounded-xl shadow-md">
+          <p>{timeLeft.days}</p>
+          <span className="text-sm">Days</span>
+        </div>
+        <div className="bg-black/70 p-4 rounded-xl shadow-md">
+          <p>{timeLeft.hours}</p>
+          <span className="text-sm">Hours</span>
+        </div>
+        <div className="bg-black/70 p-4 rounded-xl shadow-md">
+          <p>{timeLeft.minutes}</p>
+          <span className="text-sm">Minutes</span>
+        </div>
+        <div className="bg-black/70 p-4 rounded-xl shadow-md">
+          <p>{timeLeft.seconds}</p>
+          <span className="text-sm">Seconds</span>
+        </div>
+      </div>
     </div>
   );
-}
+} 
